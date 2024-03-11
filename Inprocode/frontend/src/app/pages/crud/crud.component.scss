@@ -13,4 +13,14 @@ th.mat-sort-header-sorted {
   font-size: 14px;
 }
 
+.btnEdit, .btnDelete {
+  cursor: pointer;
+}
 
+.btnEdit {
+  color: #007bff;
+}
+
+.btnDelete {
+  color: #dc3545;
+}

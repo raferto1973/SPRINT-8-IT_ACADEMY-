@@ -8,9 +8,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import { MatSortModule, Sort, MatSort} from '@angular/material/sort';
-import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule} from '@angular/material/input';
+import { MatSortModule,  MatSort} from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 import { User } from '../../interfaces/user';
@@ -38,13 +40,13 @@ const users: User[] = [
 @Component({
   selector: 'app-usersCrud',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule ],
+  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule, MatTooltipModule ],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
 })
 export class CrudComponent implements AfterViewInit{
 
-  displayedColumns: string[] = ['name', 'surname', 'email', 'age', 'distance', 'activityDate', 'location'];
+  displayedColumns: string[] = ['name', 'surname', 'email', 'age', 'distance', 'activityDate', 'location', 'actions'];
   dataSource: MatTableDataSource<User>;
 
 
