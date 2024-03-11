@@ -12,6 +12,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatSortModule,  MatSort} from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -40,7 +41,7 @@ const users: User[] = [
 @Component({
   selector: 'app-usersCrud',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule, MatTooltipModule ],
+  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule, MatTooltipModule, MatButtonModule ],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
 })

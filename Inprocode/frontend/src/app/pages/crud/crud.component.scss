@@ -8,9 +8,10 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-.mat-form-field {
-  width: 100%;
+mat-form-field {
+  width: 90%;
   font-size: 14px;
+  margin-right: 10px;
 }
 
 .btnEdit, .btnDelete {
@@ -23,4 +24,8 @@ th.mat-sort-header-sorted {
 
 .btnDelete {
   color: #dc3545;
+}
+
+.btnAdd {
+  width: 80px;
 }

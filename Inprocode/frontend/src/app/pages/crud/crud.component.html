@@ -4,11 +4,16 @@
 
     <mat-card >
 
-      <mat-form-field appearance="fill">
-        <mat-label class="" >Filtre</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Barcelona">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label class="" >Filtre</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Barcelona">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="btnAdd" >Afegir</button>
+      </div>
+
 
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
