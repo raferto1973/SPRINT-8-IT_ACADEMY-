@@ -35,6 +35,16 @@ const users: User[] = [
   },
   { name:"Pere", surname:"Solvella", email:"pere@pere.com", age:70, distance:6, activityDate: new Date(), location: "Vilassar de Mar",
   },
+  { name:"Toni", surname:"Prats", email:"toni@toni.com", age:15, distance:60, activityDate: new Date(), location: "La Garriga",
+  },
+  { name:"Mari", surname:"García", email:"mari@mari.com", age:55, distance:26, activityDate: new Date(), location: "Cardedeu",
+  },
+  { name:"Susan", surname:"Puig", email:"susan@susan.com", age:63, distance:35, activityDate: new Date(), location: "La Roca del Vallès",
+  },
+  { name:"Jenny", surname:"Galera", email:"jenny@jennypere.com", age:26, distance:11, activityDate: new Date(), location: "El Masnou",
+  },
+  { name:"Esther", surname:"Exposito", email:"esther@esther.com", age:45, distance:7, activityDate: new Date(), location: "Mataró",
+  },
 ];
 
 
