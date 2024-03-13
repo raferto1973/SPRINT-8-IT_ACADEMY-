@@ -16,8 +16,11 @@
           <input formControlName="name" matInput placeholder="Afegir nom" autocomplete="off">
         </mat-form-field>
         <div class="error">
-            <span *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched ">
+          <span *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched ">
             El nom és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('name')?.hasError('maxlength')">
+            Màxim <strong>15 caràcters</strong>
           </span>
         </div>
       </div>
@@ -26,51 +29,97 @@
           <mat-label>Cognom</mat-label>
           <input formControlName="surname" matInput placeholder="Afegir cognom" autocomplete="off">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('surname')?.hasError('required') && form.get('surname')?.touched ">
+            El cognom és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('surname')?.hasError('maxlength')">
+            Màxim <strong>15 caràcters</strong>
+          </span>
+        </div>
       </div>
     </div>
 
     <!-- Email -->
-    <div class="row">
+    <div class="row mt-3">
       <div class="column">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput placeholder="Afegir email">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched ">
+            El email és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+            El correo és  <strong>invàlid</strong>
+          </span>
+
+        </div>
       </div>
     </div>
 
     <!-- Edat i Distància -->
-    <div class="row">
+    <div class="row mt-3">
       <div class="column">
         <mat-form-field appearance="fill">
           <mat-label>Edat</mat-label>
           <input formControlName="age" matInput placeholder="Afegir edat">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('age')?.hasError('required') && form.get('age')?.touched ">
+            La edat és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('age')?.hasError('pattern')">
+            Només <strong>nombres</strong>
+          </span>
+        </div>
       </div>
       <div class="column">
         <mat-form-field appearance="fill">
           <mat-label>Distància en kms</mat-label>
           <input formControlName="distance" matInput placeholder="Afegir distància">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('distance')?.hasError('required') && form.get('distance')?.touched ">
+            La distància és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('distance')?.hasError('pattern')">
+            Només <strong>nombres</strong>
+          </span>
+        </div>
       </div>
     </div>
 
     <!-- Data i Localització -->
-    <div class="row">
+    <div class="row mt-3">
       <div class="column">
         <mat-form-field class="example-full-width">
           <mat-label>Escull data excursió</mat-label>
-          <input formControlName="activityDate" matInput [matDatepicker]="picker">
+          <input [max]="maxDate" formControlName="activityDate" matInput [matDatepicker]="picker">
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('activityDate')?.hasError('required') && form.get('activityDate')?.touched ">
+            La data és un camp <strong>requerit</strong>
+          </span>
+        </div>
 
       </div>
-      <div class="column">
+      <div class="column mt-3">
         <mat-form-field appearance="fill">
           <mat-label>Localització</mat-label>
           <input formControlName="location" matInput placeholder="Afegir localització">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('location')?.hasError('required') && form.get('location')?.touched ">
+            La localització és un camp <strong>requerit</strong>
+          </span>
+          <span *ngIf="form.get('location')?.hasError('maxlength')">
+            Màxim <strong>30 caràcters</strong>
+          </span>
+        </div>
       </div>
     </div>
 

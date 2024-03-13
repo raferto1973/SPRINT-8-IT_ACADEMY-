@@ -28,19 +28,22 @@ import { CommonModule } from '@angular/common';
 export class FormCrudComponent {
 
   form: FormGroup;
+  maxDate = new Date();
 
 
   constructor( public dialogRef: MatDialogRef<FormCrudComponent>,
     private fb: FormBuilder ) {
 
+      this.maxDate = new Date();
+
       this.form = this.fb.group({
-        name:         ['', Validators.required, ],
-        surname:      ['', Validators.required, ],
-        email:        ['', Validators.required, ],
-        age:          ['', Validators.required, ],
-        distance:     ['', Validators.required, ],
+        name:         ['', [Validators.required, Validators.maxLength(15)] ],
+        surname:      ['', [Validators.required, Validators.maxLength(15)] ],
+        email:        ['', [Validators.required, Validators.email ] ],
+        age:          ['', [Validators.required, Validators.pattern('^[0-9]*$') ]],
+        distance:     ['', [Validators.required, Validators.pattern('^[0-9]*$') ]],
         activityDate: ['', Validators.required, ],
-        location:     ['', Validators.required, ],
+        location:     ['', [Validators.required, Validators.maxLength(30)] ],
       });
 
     }
@@ -53,6 +56,7 @@ export class FormCrudComponent {
           // const nom = this.form.value.name;
           // console.log(nom);
 
+      // Si el formulari no és vàlid, no es fa res
       if (this.form.invalid) {
         return;
       }
