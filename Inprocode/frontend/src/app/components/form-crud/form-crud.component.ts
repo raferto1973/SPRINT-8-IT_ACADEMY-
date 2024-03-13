@@ -1,4 +1,7 @@
 
+// form-crud.component.ts
+
+// Aquest component és el que es mostra en el diàleg de formulari per a afegir o editar un event.
 
 import { Component } from '@angular/core';
 import { MatDialogModule, MatDialogRef,  } from '@angular/material/dialog';
@@ -12,30 +15,31 @@ import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 
 
-
-
 @Component({
   selector: 'app-form-crud',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [ MatDialogModule, MatFormField, MatLabel, MatInputModule,  MatButtonModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, CommonModule  ],
+  imports: [ MatDialogModule, MatFormField, MatLabel, MatInputModule,  MatButtonModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, CommonModule ],
   templateUrl: './form-crud.component.html',
   styleUrl: './form-crud.component.scss',
 })
 
 
-
 export class FormCrudComponent {
 
   form: FormGroup;
+
+  // Aquesta variable s'utilitza per a que la data màxima sigui la data actual
   maxDate = new Date();
 
 
   constructor( public dialogRef: MatDialogRef<FormCrudComponent>,
     private fb: FormBuilder ) {
 
+      // Aquesta línia s'encarrega de que la data màxima sigui la data actual
       this.maxDate = new Date();
 
+      // Aquesta línia s'encarrega de crear el formulari amb les validacions corresponents
       this.form = this.fb.group({
         name:         ['', [Validators.required, Validators.maxLength(15)] ],
         surname:      ['', [Validators.required, Validators.maxLength(15)] ],
@@ -61,6 +65,7 @@ export class FormCrudComponent {
         return;
       }
 
+      // Si el formulari és vàlid, es crea un objecte de tipus User amb les dades del formulari
       const user: User = {
         name:         this.form.value.name,
         surname:      this.form.value.surname,

@@ -2,8 +2,11 @@
 <!-- crud.component.ts -->
 
 
+<!-- CRUD , taula -->
+
     <mat-card >
 
+      <!-- Filtre -->
       <div>
         <mat-form-field appearance="fill">
           <mat-label class="" >Filtre</mat-label>
@@ -14,7 +17,7 @@
         <button (click)="addEditEvent()" mat-raised-button color="primary" class="btnAdd" >Afegir</button>
       </div>
 
-
+      <!-- Taula -->
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
         <!-- Nom -->
@@ -73,6 +76,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
+      <!-- Paginador -->
       <mat-paginator class="" [pageSizeOptions]="[5, 10, 20]"
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">

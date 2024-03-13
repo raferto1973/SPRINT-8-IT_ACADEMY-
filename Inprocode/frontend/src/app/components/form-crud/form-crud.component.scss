@@ -1,19 +1,28 @@
 
+// form-crud.component.scss
+
+// Aquest arxiu s'encarrega de definir l'estil dels components del formulari CRUD
+
+
+// Estil del formulari
 mat-form-field {
   width: 100%;
 }
 
+//Estil de les files
 .row {
   display: flex;
 }
 
+// Estil de les columnes
 .column {
  flex: 50%;
 
 }
 
+// Estil dels errors
 .error {
-  color: red;
+  color: #dc3545;
   margin-top: -25px;
   font-size: 12px;
 }

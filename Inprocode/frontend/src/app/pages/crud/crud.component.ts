@@ -1,6 +1,8 @@
 
 //crud.component.ts
 
+// Aquest component és el que es mostra a la pàgina de CRUD on es llisten els usuaris i es poden afegir, editar o eliminar
+
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,14 +15,13 @@ import { MatSortModule,  MatSort} from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
-
-
-
-import { User } from '../../interfaces/user';
 import { MatDialog } from '@angular/material/dialog';
 import { FormCrudComponent } from '../../components/form-crud/form-crud.component';
 
+import { User } from '../../interfaces/user';
 
+
+// Aquesta és la llista d'usuaris que es mostren a la taula
 const users: User[] = [
 
   { name:"Rafa", surname:"Fernandez", email:"rafa@rafa.com", age:50, distance:32, activityDate: new Date(), location: "Canovelles",
@@ -57,9 +58,14 @@ const users: User[] = [
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
 })
+
+
 export class CrudComponent implements AfterViewInit{
 
+  // Aquestes són les columnes que es mostren a la taula
   displayedColumns: string[] = ['name', 'surname', 'email', 'age', 'distance', 'activityDate', 'location', 'actions'];
+
+  // Aquesta és la llista d'usuaris que es mostren a la taula
   dataSource: MatTableDataSource<User>;
 
 
@@ -70,12 +76,14 @@ export class CrudComponent implements AfterViewInit{
     this.dataSource = new MatTableDataSource(users);
   }
 
+  // Paginador i ordenació de la taula
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.paginator._intl.itemsPerPageLabel = 'Elements per pàgina:';
     this.dataSource.sort = this.sort;
   }
 
+  // Aquest mètode s'executa quan es fa clic al botó de filtrar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -85,6 +93,7 @@ export class CrudComponent implements AfterViewInit{
     }
   }
 
+  // Aquest mètode s'executa quan es fa clic al botó d'afegir
   addEditEvent() {
     const dialogRef = this.dialog.open(FormCrudComponent, {
       width: '550px',

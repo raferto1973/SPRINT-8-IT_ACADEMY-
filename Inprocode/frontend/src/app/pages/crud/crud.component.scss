@@ -1,18 +1,25 @@
 
+// crud.component.scss
 
+// Estils del component CRUD
+
+// Estil de la taula
 table {
   width: 100%;
 }
 
+// Estil de les capçaleres de la taula
 th.mat-sort-header-sorted {
   color: black;
 }
 
+// Estil dels inputs
 mat-form-field {
   width: 90%;
   font-size: 14px;
   margin-right: 10px;
 }
+
 
 .btnEdit, .btnDelete {
   cursor: pointer;
