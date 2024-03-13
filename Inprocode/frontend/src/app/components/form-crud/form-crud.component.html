@@ -1,1 +1,84 @@
-<p>form-crud works!</p>
+<!-- form-crud.component.html -->
+
+<!-- Afegir excursió -->
+
+
+<h2 mat-dialog-title>Afegir excursió</h2>
+
+<form [formGroup]="form" (ngSubmit)="addEditEvent()">
+  <mat-dialog-content>
+
+    <!-- Nom i Cognom -->
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input formControlName="name" matInput placeholder="Afegir nom" autocomplete="off">
+        </mat-form-field>
+        <div class="error">
+            <span *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched ">
+            El nom és un camp <strong>requerit</strong>
+          </span>
+        </div>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Cognom</mat-label>
+          <input formControlName="surname" matInput placeholder="Afegir cognom" autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Afegir email">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Edat i Distància -->
+    <div class="row">
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Edat</mat-label>
+          <input formControlName="age" matInput placeholder="Afegir edat">
+        </mat-form-field>
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Distància en kms</mat-label>
+          <input formControlName="distance" matInput placeholder="Afegir distància">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Data i Localització -->
+    <div class="row">
+      <div class="column">
+        <mat-form-field class="example-full-width">
+          <mat-label>Escull data excursió</mat-label>
+          <input formControlName="activityDate" matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+      <div class="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Localització</mat-label>
+          <input formControlName="location" matInput placeholder="Afegir localització">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <!-- Botons -->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" (click)="cancelBtn()" mat-button>cancel·lar</button>
+    <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Aceptar</button>
+  </mat-dialog-actions>
+</form>

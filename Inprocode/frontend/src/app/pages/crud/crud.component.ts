@@ -17,6 +17,8 @@ import {MatButtonModule} from '@angular/material/button';
 
 
 import { User } from '../../interfaces/user';
+import { MatDialog } from '@angular/material/dialog';
+import { FormCrudComponent } from '../../components/form-crud/form-crud.component';
 
 
 const users: User[] = [
@@ -51,7 +53,7 @@ const users: User[] = [
 @Component({
   selector: 'app-usersCrud',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule, MatTooltipModule, MatButtonModule ],
+  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule, MatSortModule, MatIconModule, MatTooltipModule, MatButtonModule, FormCrudComponent ],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
 })
@@ -64,7 +66,7 @@ export class CrudComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(users);
   }
 
@@ -83,6 +85,16 @@ export class CrudComponent implements AfterViewInit{
     }
   }
 
+  addEditEvent() {
+    const dialogRef = this.dialog.open(FormCrudComponent, {
+      width: '550px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  };
 
 
 
