@@ -1,0 +1,13 @@
+
+
+li {
+  cursor: pointer;
+  transition: 0.3s all;
+  padding: 10px;
+  color: rgb(173, 162, 162);
+}
+
+li:hover {
+  color: rgb(14, 0, 46);
+  background-color: rgb(187, 187, 187);
+}
