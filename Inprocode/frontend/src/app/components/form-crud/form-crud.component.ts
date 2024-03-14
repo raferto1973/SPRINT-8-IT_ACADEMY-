@@ -6,40 +6,24 @@ import { CommonModule } from '@angular/common';
 import { Inject } from '@angular/core';
 
 // Moduls de material que s'utilitzen en aquest component
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatFormField,
-  MatFormFieldModule,
-  MatLabel,
-} from '@angular/material/form-field';
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  DateAdapter,
-  MatNativeDateModule,
-  provideNativeDateAdapter,
-} from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Moduls de formularis que s'utilitzen en aquest component
-import {
-  Form,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // Serveis que s'utilitzen en aquest component
 import { ActivityService } from '../../services/activity.service';
 import { Activity } from '../../interfaces/activity';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Dialog } from '@angular/cdk/dialog';
+import { format } from 'date-fns';
+
 
 
 @Component({
@@ -127,11 +111,11 @@ export class FormCrudComponent implements OnInit {
         email:        data.email,
         age:          data.age,
         distance:     data.distance,
-        activityDate: new Date(data.activityDate),
+        activityDate: data.activityDate,
         location:     data.location,
       });
     })
-  } 
+  }
 
 
   // Mètode per a afegir o editar un usuari
@@ -151,7 +135,7 @@ export class FormCrudComponent implements OnInit {
       email:        this.form.value.email,
       age:          this.form.value.age,
       distance:     this.form.value.distance,
-      activityDate: this.form.value.activityDate.toString().slice(0, 10),
+      activityDate: format(this.form.value.activityDate, 'yyyy-MM-dd'),
       location:     this.form.value.location,
     };
 
@@ -185,6 +169,12 @@ export class FormCrudComponent implements OnInit {
   cancelBtn(): void {
     this.dialogRef.close(false);
   }
+
+  // Formatea la fecha al formato 'YYYY-MM-DD HH:mm:ss'
+  formatDate(date: Date): string {
+    return format(date, 'yyyy-MM-dd');
+  }
+
 
 
   // Mètode per a mostrar un missatge de sortida

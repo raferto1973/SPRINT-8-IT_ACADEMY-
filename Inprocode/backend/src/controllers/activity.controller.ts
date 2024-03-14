@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import connection from '../db/connection';
 import moment from 'moment';
+import { format } from 'date-fns';
 
 export const getActivities = (req: Request, res: Response) => {
     
@@ -40,7 +41,7 @@ export const postActivity = (req: Request, res: Response) => {
 
     // Asumiendo que 'activityDate' es la clave en 'body' que contiene la fecha a formatear
     if(body.activityDate) {
-        body.activityDate = moment(body.activityDate).format('YYYY-MM-DD HH:mm:ss');
+        body.activityDate = format(new Date(body.activityDate), 'yyyy-MM-dd');
     }
 
     connection.query('INSERT INTO activity set ?', body, (err, data) => {
@@ -60,7 +61,12 @@ export const postActivity = (req: Request, res: Response) => {
 export const putActivity = (req: Request, res: Response) => {
     const { body } = req; 
     const { id } = req.params; 
-       
+    
+    if(body.activityDate) {
+        // Formatea la fecha a 'YYYY-MM-DD' antes de la actualización
+        body.activityDate = format(new Date(body.activityDate), 'yyyy-MM-dd');
+    }
+    
     connection.query('UPDATE activity set ? WHERE id = ?', [body, id], (err, data) => {
         if(err) throw err;
 

@@ -10,7 +10,7 @@ export interface Activity {
   email:        string;
   age:          number;
   distance:     number;
-  activityDate: Date;
+  activityDate: string;
   location:     string;
 
 }
