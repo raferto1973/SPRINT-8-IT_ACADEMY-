@@ -131,7 +131,7 @@ export class FormCrudComponent implements OnInit {
         location:     data.location,
       });
     })
-  }
+  } 
 
 
   // Mètode per a afegir o editar un usuari
