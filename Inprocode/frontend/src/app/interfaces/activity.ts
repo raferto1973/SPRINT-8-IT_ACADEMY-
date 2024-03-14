@@ -1,8 +1,8 @@
 
 
-// user.ts
+// activity.ts
 
-export interface User {
+export interface Activity {
 
   id?:          number;
   name:         string;

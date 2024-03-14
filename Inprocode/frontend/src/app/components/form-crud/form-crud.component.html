@@ -2,10 +2,17 @@
 
 <!-- Afegir excursió -->
 
+<div class="container mt-3">
+  <!-- Afegir excursió -->
+  <h2 mat-dialog-title>{{ operation }}</h2>
 
-<h2 mat-dialog-title>Afegir excursió</h2>
+  <!-- Spinner -->
+  <mat-spinner *ngIf="loadding" [diameter]="30"></mat-spinner>
+</div>
 
-<form [formGroup]="form" (ngSubmit)="addEditEvent()">
+
+<!-- Formulari -->
+<form [formGroup]="form" (ngSubmit)="addEditActivity()">
   <mat-dialog-content>
 
     <!-- Nom i Cognom -->
