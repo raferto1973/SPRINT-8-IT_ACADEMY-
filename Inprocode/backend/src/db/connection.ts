@@ -1,4 +1,5 @@
 
+// connection.ts
 
 import mysql from 'mysql';
 import keys from '../keys';

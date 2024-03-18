@@ -1,3 +1,6 @@
+
+// index.ts
+
 import Server from "./models/server";
 import dotenv from 'dotenv';
 

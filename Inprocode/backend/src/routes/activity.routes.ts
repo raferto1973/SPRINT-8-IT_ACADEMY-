@@ -1,4 +1,6 @@
 
+// activity.routes.ts
+
 
 import { Router } from 'express';
 import { deleteActivity, getActivities, getActivity, postActivity, putActivity } from '../controllers/activity.controller';

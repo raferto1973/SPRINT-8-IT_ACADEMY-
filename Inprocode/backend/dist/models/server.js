@@ -1,12 +1,14 @@
 "use strict";
+// Server.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var activity_routes_1 = __importDefault(require("../routes/activity.routes"));
 var connection_1 = __importDefault(require("../db/connection"));
 var cors_1 = __importDefault(require("cors"));
+var activity_routes_1 = __importDefault(require("../routes/activity.routes"));
+var markers_routes_1 = __importDefault(require("../routes/markers.routes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = (0, express_1.default)();
@@ -29,6 +31,7 @@ var Server = /** @class */ (function () {
     };
     Server.prototype.routes = function () {
         this.app.use('/api/activities', activity_routes_1.default);
+        this.app.use('/api/markers', markers_routes_1.default);
     };
     Server.prototype.conectarDB = function () {
         connection_1.default.connect(function (err) {
