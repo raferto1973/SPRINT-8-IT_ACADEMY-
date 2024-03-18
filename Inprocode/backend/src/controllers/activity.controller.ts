@@ -38,12 +38,7 @@ export const deleteActivity = (req: Request, res: Response) => {
 export const postActivity = (req: Request, res: Response) => {
     
     const body = { ...req.body };
-
-    // Asumiendo que 'activityDate' es la clave en 'body' que contiene la fecha a formatear
-    if(body.activityDate) {
-        body.activityDate = format(new Date(body.activityDate), 'yyyy-MM-dd');
-    }
-
+  
     connection.query('INSERT INTO activity set ?', body, (err, data) => {
         if (err) {
             console.error(err);
@@ -60,12 +55,8 @@ export const postActivity = (req: Request, res: Response) => {
 
 export const putActivity = (req: Request, res: Response) => {
     const { body } = req; 
-    const { id } = req.params; 
-    
-    if(body.activityDate) {
-        // Formatea la fecha a 'YYYY-MM-DD' antes de la actualización
-        body.activityDate = format(new Date(body.activityDate), 'yyyy-MM-dd');
-    }
+    const { id } = req.params;     
+  
     
     connection.query('UPDATE activity set ? WHERE id = ?', [body, id], (err, data) => {
         if(err) throw err;

@@ -44,7 +44,7 @@ export const postMarker = (req: Request, res: Response) => {
         if (err) {
             console.error(err);
             return res.status(500).json({
-                msg: "Error al agregar la actividad",
+                msg: "Error al afegir l'actividat",
                 error: err.message
             });
         }
