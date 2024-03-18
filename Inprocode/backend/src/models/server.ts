@@ -7,6 +7,7 @@ import cors from 'cors';
 
 import routesPersonas from '../routes/activity.routes';
 import markersRoutes from '../routes/markers.routes';
+import eventsRoutes from '../routes/events.routes';
 
 class Server {
     private app: Application;
@@ -38,6 +39,7 @@ class Server {
     routes() {
         this.app.use('/api/activities', routesPersonas);
         this.app.use('/api/markers', markersRoutes);
+        this.app.use('/api/events', eventsRoutes);
     }
 
     conectarDB() {

@@ -9,6 +9,7 @@ var connection_1 = __importDefault(require("../db/connection"));
 var cors_1 = __importDefault(require("cors"));
 var activity_routes_1 = __importDefault(require("../routes/activity.routes"));
 var markers_routes_1 = __importDefault(require("../routes/markers.routes"));
+var events_routes_1 = __importDefault(require("../routes/events.routes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = (0, express_1.default)();
@@ -32,6 +33,7 @@ var Server = /** @class */ (function () {
     Server.prototype.routes = function () {
         this.app.use('/api/activities', activity_routes_1.default);
         this.app.use('/api/markers', markers_routes_1.default);
+        this.app.use('/api/events', events_routes_1.default);
     };
     Server.prototype.conectarDB = function () {
         connection_1.default.connect(function (err) {

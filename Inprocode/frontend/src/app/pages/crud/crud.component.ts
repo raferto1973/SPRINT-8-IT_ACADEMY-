@@ -1,5 +1,3 @@
-
-
 //crud.component.ts
 
 // Aquest component és el que es mostra a la pàgina de CRUD on es llisten els usuaris i es poden afegir, editar o eliminar
@@ -23,20 +21,43 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Aquestes són les llibreries pròpies que s'utilitzen en aquest component
-import { Activity } from '../../interfaces/activity';
+import { Activity } from '../../models/activity.model';
 import { ActivityService } from '../../services/activity.service';
 
 @Component({
   selector: 'app-usersCrud',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatTableModule, MatPaginatorModule, MatFormField, MatLabel, MatInputModule,
-    MatSortModule, MatIconModule, MatTooltipModule, MatButtonModule, FormCrudComponent, MatProgressBarModule, MatSnackBarModule ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormField,
+    MatLabel,
+    MatInputModule,
+    MatSortModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
+    FormCrudComponent,
+    MatProgressBarModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './crud.component.html',
-  styleUrl:    './crud.component.scss',
+  styleUrl: './crud.component.scss',
 })
 export class CrudComponent implements OnInit, AfterViewInit {
   // Aquestes són les columnes que es mostren a la taula
-  displayedColumns: string[] = [ 'name', 'surname', 'email', 'age', 'distance', 'activityDate', 'location', 'actions' ];
+  displayedColumns: string[] = [
+    'name',
+    'surname',
+    'email',
+    'age',
+    'distance',
+    'activityDate',
+    'location',
+    'actions',
+  ];
 
   // Aquesta variable s'utilitza per mostrar o amagar la barra de progrés
   loading: boolean = false;

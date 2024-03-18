@@ -6,36 +6,66 @@ import { CommonModule } from '@angular/common';
 import { Inject } from '@angular/core';
 
 // Moduls de material que s'utilitzen en aquest component
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import {
+  MatFormField,
+  MatFormFieldModule,
+  MatLabel,
+} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import {
+  DateAdapter,
+  MatNativeDateModule,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Moduls de formularis que s'utilitzen en aquest component
-import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  Form,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 // Serveis que s'utilitzen en aquest component
 import { ActivityService } from '../../services/activity.service';
-import { Activity } from '../../interfaces/activity';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Activity } from '../../models/activity.model';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 import { Dialog } from '@angular/cdk/dialog';
 import { format } from 'date-fns';
-
-
 
 @Component({
   selector: 'app-form-crud',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [ MatDialogModule, MatFormField, MatLabel, MatInputModule, MatButtonModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, CommonModule, MatProgressSpinnerModule ],
+  imports: [
+    MatDialogModule,
+    MatFormField,
+    MatLabel,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './form-crud.component.html',
-  styleUrl:    './form-crud.component.scss',
+  styleUrl: './form-crud.component.scss',
 })
-
-
 export class FormCrudComponent implements OnInit {
   form: FormGroup;
 
@@ -55,7 +85,6 @@ export class FormCrudComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-
   constructor(
     public dialogRef: MatDialogRef<FormCrudComponent>,
     private fb: FormBuilder,
@@ -64,21 +93,19 @@ export class FormCrudComponent implements OnInit {
     private dateAdapter: DateAdapter<any>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
     // Aquesta línia s'encarrega de que la data màxima sigui la data actual
     this.maxDate = new Date();
 
     // Aquesta línia s'encarrega de crear el formulari amb les validacions corresponents
     this.form = this.fb.group({
-      name:         ['', [Validators.required, Validators.maxLength(15)]],
-      surname:      ['', [Validators.required, Validators.maxLength(15)]],
-      email:        ['', [Validators.required, Validators.email]],
-      age:          ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      distance:     ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      name: ['', [Validators.required, Validators.maxLength(15)]],
+      surname: ['', [Validators.required, Validators.maxLength(15)]],
+      email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      distance: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       activityDate: ['', Validators.required],
-      location:     ['', [Validators.required, Validators.maxLength(30)]],
+      location: ['', [Validators.required, Validators.maxLength(30)]],
     });
-
 
     // Aquesta línia s'encarrega de que la data màxima sigui la data actual, en espanyol
     dateAdapter.setLocale('es');
@@ -92,35 +119,31 @@ export class FormCrudComponent implements OnInit {
     this.isEdit(this.id);
   }
 
-
   // Mètode per a comprovar si es vol editar un usuari
-  isEdit( id:number | undefined ) {
-    if(id !== undefined) {
+  isEdit(id: number | undefined) {
+    if (id !== undefined) {
       this.operation = 'Editar ';
       this.getActivity(id);
-    };
+    }
   }
-
 
   // Mètode per a obtenir les dades d'un usuari
-  getActivity( id: number)  {
-    this._activityService.getActivity(id).subscribe( data => {
+  getActivity(id: number) {
+    this._activityService.getActivity(id).subscribe((data) => {
       this.form.setValue({
-        name:         data.name,
-        surname:      data.surname,
-        email:        data.email,
-        age:          data.age,
-        distance:     data.distance,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        age: data.age,
+        distance: data.distance,
         activityDate: data.activityDate,
-        location:     data.location,
+        location: data.location,
       });
-    })
+    });
   }
-
 
   // Mètode per a afegir o editar un usuari
   addEditActivity() {
-
     // Si el formulari no és vàlid, no es fa res
     if (this.form.invalid) {
       return;
@@ -130,40 +153,34 @@ export class FormCrudComponent implements OnInit {
 
     // Si el formulari és vàlid, es crea un objecte de tipus User amb les dades del formulari
     const activity: Activity = {
-      name:         this.form.value.name,
-      surname:      this.form.value.surname,
-      email:        this.form.value.email,
-      age:          this.form.value.age,
-      distance:     this.form.value.distance,
+      name: this.form.value.name,
+      surname: this.form.value.surname,
+      email: this.form.value.email,
+      age: this.form.value.age,
+      distance: this.form.value.distance,
       activityDate: format(this.form.value.activityDate, 'yyyy-MM-dd'),
-      location:     this.form.value.location,
+      location: this.form.value.location,
     };
 
     // S'activa el cercle de carregant
     this.loadding = true;
 
-
-    if ( this.id == undefined ) {
-
+    if (this.id == undefined) {
       // Afegir usuari
       this._activityService.addActivity(activity).subscribe(() => {
         this.exitMessage('afegit');
       });
-
     } else {
-
       // Editar usuari
       this._activityService.updateActivity(this.id, activity).subscribe(() => {
-          this.exitMessage('actualitzada');
+        this.exitMessage('actualitzada');
       });
-      };
-
-      // S'atura el cercle de carregant i es tanca el diàleg
-      this.loadding = false;
-      this.dialogRef.close(true);
-
     }
 
+    // S'atura el cercle de carregant i es tanca el diàleg
+    this.loadding = false;
+    this.dialogRef.close(true);
+  }
 
   // Mètode per a tancar el diàleg
   cancelBtn(): void {
@@ -175,15 +192,12 @@ export class FormCrudComponent implements OnInit {
     return format(date, 'yyyy-MM-dd');
   }
 
-
-
   // Mètode per a mostrar un missatge de sortida
   exitMessage(operation: string) {
     this._snackBar.open(`L'activitat s'ha ${operation} amb èxit`, '', {
-     horizontalPosition: this.horizontalPosition,
+      horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: 2000,
     });
   }
 }
-
