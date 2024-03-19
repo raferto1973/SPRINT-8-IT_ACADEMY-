@@ -1,0 +1,80 @@
+
+
+// calendar-dialog.component.scss
+
+
+
+
+::ng-deep .mat-typography h2 {
+    margin: 20px;
+}
+
+::ng-deep .mat-dialog-container .mat-dialog-content {
+    padding: 20px;
+  }
+
+  ::ng-deep .mat-dialog-container .mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  ::ng-deep .mat-dialog-container .mat-dialog-title {
+    margin-bottom: 20px;
+  }
+
+  // Asegura que los botones no cambien de estilo
+  ::ng-deep .mat-dialog-container .cancel-btn,
+  ::ng-deep .mat-dialog-container .save-btn {
+    width: auto;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+
+  ::ng-deep .mat-dialog-container button {
+    margin: 0 auto;
+  }
+
+  button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .cancel-btn, .save-btn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .cancel-btn {
+    background-color: #ffaeb6;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+      background-color: #f06f7c;
+      color: rgb(255, 255, 255);
+
+    }
+  }
+
+  .save-btn {
+    border: none;
+    background-color: #f7f8ef;
+    color: #a38c78;
+
+    &:hover {
+      border: none;
+      background-color: #f7f8ef;
+      color: #8d6e54;
+    }
+  }
+
+  // $background-color: #f7f8ef
+  // $logo-color: #a38c78
+  // $logo-color-hoover: #8d6e54
