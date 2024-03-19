@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CalendarService } from '../../services/calendar.service';
 import listPlugin from '@fullcalendar/list';
 import esLocale from '@fullcalendar/core/locales/es';
+import caLocale from '@fullcalendar/core/locales/ca'; // Locale Catalán
+
 
 
 // Asegúrate de que la ruta sea correcta
@@ -30,13 +32,14 @@ export class CalendarComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef // Inyecta ChangeDetectorRef
   ) {
     this.calendarOptions = {
+      themeSystem: 'bootstrap5',
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin, interactionPlugin, listPlugin],
       editable: true,
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true,
-      locale: esLocale,
+      locale: caLocale,
       defaultAllDay: true,
       events: [],
       dateClick: this.handleDateClick.bind(this),
