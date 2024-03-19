@@ -49,6 +49,9 @@ export class CalendarComponent implements AfterViewInit {
       },
     };
   }
+  handleEventResize(resizeInfo: any) {
+    throw new Error('Method not implemented.');
+  }
 
   // Mètode per carregar els events després de que la vista s'hagi inicialitzat
   ngAfterViewInit() {
@@ -63,6 +66,8 @@ export class CalendarComponent implements AfterViewInit {
       this.cdr.detectChanges(); // Solicita a Angular que verifique cambios
     });
   }
+
+
 
   // Mètode per obrir el formulario de diàleg per afegir un nou event
   handleDateClick(arg: any): void {
@@ -128,4 +133,8 @@ export class CalendarComponent implements AfterViewInit {
       }
     });
   }
+
+
+
+
 }

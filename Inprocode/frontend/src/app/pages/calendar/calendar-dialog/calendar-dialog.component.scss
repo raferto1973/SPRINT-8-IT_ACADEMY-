@@ -3,8 +3,6 @@
 // calendar-dialog.component.scss
 
 
-
-
 ::ng-deep .mat-typography h2 {
     margin: 20px;
 }
@@ -70,11 +68,8 @@
 
     &:hover {
       border: none;
-      background-color: #f7f8ef;
-      color: #8d6e54;
+      background-color: #eaf692;
+      color: #815c5c;
     }
   }
 
-  // $background-color: #f7f8ef
-  // $logo-color: #a38c78
-  // $logo-color-hoover: #8d6e54
