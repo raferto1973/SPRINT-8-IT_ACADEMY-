@@ -29,7 +29,7 @@ export class LocationService {
     );
   }
 
-  updateMarker(id: number, marker: Location): Observable<Location> {
+  updateLocation(id: number, marker: Location): Observable<Location> {
     return this.http.put<Location>(
       `${this.myappUrl}${this.myApiUrl}${id}`,
       marker

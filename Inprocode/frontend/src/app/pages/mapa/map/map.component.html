@@ -1,7 +1,18 @@
-
-
 <!-- map.component.html -->
 
+
+
 <div class="container mt-5">
-  <div id="map" ></div>
+  <div id="map" class="rounded-4 border border-3"></div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4 mx-5 categories">
+      <select class="form-select mt-3" [(ngModel)]="selectedCategory" (change)="filterMarkers()">
+        <option value="all">Categories</option>
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+  </div>
 </div>
