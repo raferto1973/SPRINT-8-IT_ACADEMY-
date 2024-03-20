@@ -16,7 +16,7 @@ export function createMap(containerId: string, token: string): mapboxgl.Map {
       container: containerId,
         style: 'mapbox://styles/mapbox/standard',
         center: [2.2896, 41.5999],
-        zoom: 12,
+        zoom: 8,
         accessToken: environment.mapbox_key
 
     });

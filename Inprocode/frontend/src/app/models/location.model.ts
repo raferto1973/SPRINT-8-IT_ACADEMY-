@@ -9,7 +9,9 @@ export interface Location {
   latitude: number;
   longitude: number;
   category: string;
+  categories?: string[];
 }
+
 
 
 

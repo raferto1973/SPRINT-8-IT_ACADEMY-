@@ -14,7 +14,7 @@ import { Location } from '../models/location.model';
 })
 export class LocationService {
   private myappUrl = environment.endpoint;
-  private myApiUrl = 'api/events/';
+  private myApiUrl = 'api/markers/';
 
   constructor(private http: HttpClient) {}
 
@@ -23,10 +23,9 @@ export class LocationService {
   }
 
   saveLocation(marker: Location): Observable<Location> {
-    return this.http.post<Location>(
-      `${this.myappUrl}${this.myApiUrl}`,
-      marker
-    );
+    console.log("Guardando marcador");
+    console.log(marker);
+    return this.http.post<Location>( `${this.myappUrl}${this.myApiUrl}`, marker);
   }
 
   updateLocation(id: number, marker: Location): Observable<Location> {
@@ -39,4 +38,16 @@ export class LocationService {
   deleteLocation(id: number): Observable<void> {
     return this.http.delete<void>(`${this.myappUrl}${this.myApiUrl}${id}`);
   }
+
+  testPost(): Observable<any> {
+    return this.http.post<any>(`${this.myappUrl}${this.myApiUrl}`, {
+      name: "Test Marker",
+      latitude: 41.0,
+      longitude: 2.0,
+      category: "Test"
+    });
+  }
+
 }
+
+
