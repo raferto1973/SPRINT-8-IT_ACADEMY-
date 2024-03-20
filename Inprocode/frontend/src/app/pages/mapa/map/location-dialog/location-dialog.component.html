@@ -1,21 +1,30 @@
 
+<!-- location-dialog.component.html -->
 
-<h1 mat-dialog-title>Añadir Ubicación</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="data.name">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Categoría</mat-label>
-    <mat-select [(ngModel)]="data.category">
-      <mat-option *ngFor="let category of categories" [value]="category">
-        {{category}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+
+<div class="rounded ">
+
+  <h1 mat-dialog-title class="text-center">Editar ubicació</h1>
+
+  <div mat-dialog-content class="p-5">
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select [(ngModel)]="data.category">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button class="cancel-btn" (click)="onNoClick()">Cancelar</button>
+    <button mat-button class="save-btn" [mat-dialog-close]="data" cdkFocusInitial>Guardar</button>
+  </div>
+
+
 </div>

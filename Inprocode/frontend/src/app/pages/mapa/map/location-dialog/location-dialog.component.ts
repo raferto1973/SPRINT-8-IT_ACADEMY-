@@ -24,6 +24,8 @@ export interface DialogData {
 @Component({
   selector: 'app-location-dialog',
   templateUrl: 'location-dialog.component.html',
+  styleUrls: ['location-dialog.component.scss'],
+
   standalone: true,
   imports: [ CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDialogClose,   ],
 })
