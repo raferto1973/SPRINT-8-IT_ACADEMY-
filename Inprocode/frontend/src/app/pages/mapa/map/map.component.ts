@@ -26,8 +26,8 @@ export class MapComponent implements OnInit {
   map!: mapboxgl.Map;
   selectedCategory: string = 'all';
   categories: string[] = ['Restaurants', 'Bancs', 'Bencineres', 'Botigues']; // categorías
-  markers: mapboxgl.Marker[] = []; // Almacenará todos los marcadores
-
+// Cambio: Ahora markers es un objeto que asocia cada Marker con su Location
+  markers: { marker: mapboxgl.Marker, location: Location }[] = [];
   constructor(
     private locationService: LocationService,
     private dialog: MatDialog
@@ -43,30 +43,31 @@ export class MapComponent implements OnInit {
 
   // Añadir un nuevo marcador al hacer clic en el mapa
   addMarker(e: mapboxgl.MapMouseEvent): void {
-    // Usa e.lngLat.lng i e.lngLat.lat en comptes de lng i lat
-    const coordinates: number[] = [e.lngLat.lng, e.lngLat.lat];
+    const coordinates: [number, number] = [e.lngLat.lng, e.lngLat.lat]; // Usando destructuración para tupla
 
-    // Converteix a tupla per a evitar errors de tipus
-    const lngLatLike: [number, number] = [coordinates[0], coordinates[1]]; // Hacemos cast a tupla
-
-    // Crea un marcador a la posició clicada
-    const newMarker = new mapboxgl.Marker()
-      .setLngLat(lngLatLike)
+    // Crear un marcador a la posición clicada
+    const newMarker = new mapboxgl.Marker({ draggable: true }) // Asumiendo que quieres que sea arrastrable desde el principio
+      .setLngLat(coordinates)
       .addTo(this.map);
 
-    // Obre el diàleg de localització
-    this.openLocationDialog(newMarker);
-
-    // Afegeix un event listener al marcador per a obrir el diàleg
-    newMarker.getElement().addEventListener('click', () => {
-      this.openLocationDialog(newMarker);
+    // Añade el marcador al array 'markers' con un objeto 'location' temporal
+    this.markers.push({
+      marker: newMarker,
+      location: {
+        // Puedes dejar estos campos vacíos o establecer valores predeterminados
+        name: '',
+        latitude: coordinates[1],
+        longitude: coordinates[0],
+        category: '',
+      }
     });
 
-    // Afegeix el marcador a l'array per a gestionar-los després
-    this.markers.push(newMarker);
+    // Abre el diálogo para que el usuario pueda editar los detalles del marcador
+    this.openLocationDialog(newMarker);
   }
 
-  // Abrir el diálogo para editar la información del marcador
+
+  // Obrir el formulari de diàleg per a afegir una localització
   openLocationDialog(marker: mapboxgl.Marker): void {
     const dialogRef = this.dialog.open(LocationDialogComponent, {
       width: '250px',
@@ -79,51 +80,49 @@ export class MapComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Transforma el resultado para que coincida con la estructura de la base de datos si es necesario
-        const newLocation: Location = {
-          name: result.name,
-          latitude: result.lat, // Asegúrate de que esto es un número
-          longitude: result.lng, // Asegúrate de que esto es un número
-          category: result.category
-        };
+        // Encuentra el objeto asociado al marcador en el array 'markers'
+        const markerObject = this.markers.find(m => m.marker === marker);
 
-        this.locationService.saveLocation(newLocation).subscribe({
-          next: (response) => {
-            console.log("Marcador guardado con éxito", response);
-            // Agrega el marcador al mapa si aún no está presente
-            const newMarker = new mapboxgl.Marker()
-              .setLngLat([newLocation.longitude, newLocation.latitude])
-              .addTo(this.map);
+        if (markerObject) {
+          // Actualiza el objeto 'location' con los nuevos valores
+          markerObject.location = {
+            name: result.name,
+            latitude: result.lat,
+            longitude: result.lng,
+            category: result.category,
+          };
 
-            // Agrega lógica aquí si necesitas almacenar el marcador para su posterior uso
-            this.markers.push(newMarker);
-
-            // También podrías querer agregar un popup al marcador aquí
-            newMarker.getElement().addEventListener('click', () => this.openLocationDialog(newMarker));
-
-          },
-          error: (error) => {
-            console.error("Error al guardar el marcador:", error);
-          }
-        });
+          // Guarda la ubicación actualizada en la base de datos
+          this.locationService.saveLocation(markerObject.location).subscribe({
+            next: (response) => {
+              console.log("Marcador guardado con éxito", response);
+            },
+            error: (error) => {
+              console.error("Error al guardar el marcador:", error);
+            }
+          });
+        }
       }
     });
-
   }
+
 
   // Aquest mètode carrega les ubicacions des de la base de dades i les mostra al mapa
   loadLocations(): void {
     this.locationService.getAllLocations().subscribe({
       next: (locations) => {
-        this.markers = locations.map((location) => {
+        // Vaciamos el array de marcadores para evitar duplicados
+        this.markers = [];
+        locations.forEach((location) => {
           const marker = new mapboxgl.Marker()
             .setLngLat([location.longitude, location.latitude])
             .addTo(this.map);
           marker.getElement().addEventListener('click', () => {
             this.openLocationDialog(marker);
           });
-          console.log(locations);
-          return marker;
+
+          // Almacenamos tanto el marcador como la ubicación
+          this.markers.push({ marker, location });
         });
       },
       error: (error) => {
@@ -132,9 +131,20 @@ export class MapComponent implements OnInit {
     });
   }
 
+
   filterMarkers(): void {
-    // Lógica para filtrar marcadores basado en la categoría seleccionada
-    // Esto requerirá que cada marcador tenga asociada una categoría
+    // Removemos todos los marcadores actuales del mapa
+    this.markers.forEach(({ marker }) => marker.remove());
+
+    // Filtramos las ubicaciones basadas en la categoría seleccionada y las agregamos de nuevo
+    const filteredMarkers = this.selectedCategory === 'all'
+      ? this.markers
+      : this.markers.filter(({ location }) => location.category === this.selectedCategory);
+
+    // Agregamos los marcadores filtrados al mapa
+    filteredMarkers.forEach(({ marker, location }) => {
+      marker.setLngLat([location.longitude, location.latitude]).addTo(this.map);
+    });
   }
 }
 

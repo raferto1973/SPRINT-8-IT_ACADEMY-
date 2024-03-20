@@ -4,6 +4,7 @@
 
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../../../environments/environment';
+import { Draggable } from '@fullcalendar/interaction';
 
 
 
