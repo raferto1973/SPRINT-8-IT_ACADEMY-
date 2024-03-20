@@ -13,19 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { LocationDialogComponent } from './location-dialog/location-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import { FlyToOptions } from 'mapbox-gl';
 
 
-
-// Aquesta funció retorna el color del marcador basat en la categoria
-function getMarkerColor(category: string): string {
-  const categoryColors: { [category: string]: string } = {
-    'Restaurants': 'red',
-    'Bancs': 'blue',
-    'Bencineres': 'green',
-    'Botigues': 'orange',
-  };
-  return categoryColors[category] || 'gray';
-}
 
 @Component({
   selector: 'app-map',
@@ -154,11 +144,11 @@ export class MapComponent implements OnInit {
   }
 
   getCategoryCount(category: string): number {
-    if (category === 'all') {
-      return this.markers.length;
-    }
-    return this.markers.filter(marker => marker.location.category === category).length;
+  if (category === 'all') {
+    return this.markers.length;
   }
+  return this.markers.filter(marker => marker.location.category === category).length;
+}
 
   filterMarkers(): void {
     // Removemos todos los marcadores actuales del mapa
