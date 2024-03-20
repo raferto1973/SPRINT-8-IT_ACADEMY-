@@ -12,26 +12,37 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LocationDialogComponent } from './location-dialog/location-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Dialog } from '@angular/cdk/dialog';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
   providers: [],
 })
+
+
 export class MapComponent implements OnInit {
+
+  // Afegim propietat map de tipus mapboxgl.Map
   map!: mapboxgl.Map;
+
   selectedCategory: string = 'all';
   categories: string[] = ['Restaurants', 'Bancs', 'Bencineres', 'Botigues']; // categorías
-// Cambio: Ahora markers es un objeto que asocia cada Marker con su Location
+
+  // Array de marcadors amb la seva ubicació associada
   markers: { marker: mapboxgl.Marker, location: Location }[] = [];
+
+
   constructor(
     private locationService: LocationService,
     private dialog: MatDialog
   ) {}
+
 
   ngOnInit(): void {
     this.map = createMap('map', environment.mapbox_key);
@@ -70,7 +81,7 @@ export class MapComponent implements OnInit {
   // Obrir el formulari de diàleg per a afegir una localització
   openLocationDialog(marker: mapboxgl.Marker): void {
     const dialogRef = this.dialog.open(LocationDialogComponent, {
-      width: '250px',
+      width: '300px',
       data: {
         lat: marker.getLngLat().lat,
         lng: marker.getLngLat().lng,

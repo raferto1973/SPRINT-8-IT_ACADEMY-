@@ -1,6 +1,9 @@
 <!-- map.component.html -->
 
 
+<div>
+  <h1 class="text-uppercase">Mapa d'ubicacions</h1>
+</div>
 
 <div class="container mt-5">
   <div id="map" class="rounded-4 border border-3"></div>
@@ -8,14 +11,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-3 mx-5 categories">
+    <div class="col-2 mx-5 categories">
       <select class="form-select mt-3" [(ngModel)]="selectedCategory" (change)="filterMarkers()">
         <option value="all">Categories</option>
         <option *ngFor="let category of categories" [value]="category">{{category}}</option>
       </select>
     </div>
-    <div class="col-3 justify-content-end">
-      <button class="btn btn-secondary mt-3">Afegir Marcador</button>
+
+    <div class="col-6 mt-4 text-end">
+      <p>
+        <mat-icon aria-hidden="false" aria-label="info icon" fontIcon="info"></mat-icon>
+        Per afegir una localització, fes click al mapa</p>
     </div>
   </div>
 </div>
