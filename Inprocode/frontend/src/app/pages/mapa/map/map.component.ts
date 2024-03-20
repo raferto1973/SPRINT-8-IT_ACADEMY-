@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { LocationDialogComponent } from './location-dialog/location-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
-import { FlyToOptions } from 'mapbox-gl';
 
 
 
