@@ -39,15 +39,6 @@ export class LocationService {
     return this.http.delete<void>(`${this.myappUrl}${this.myApiUrl}${id}`);
   }
 
-  testPost(): Observable<any> {
-    return this.http.post<any>(`${this.myappUrl}${this.myApiUrl}`, {
-      name: "Test Marker",
-      latitude: 41.0,
-      longitude: 2.0,
-      category: "Test"
-    });
-  }
-
 }
 
 
