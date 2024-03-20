@@ -12,10 +12,12 @@
 <div class="container">
   <div class="row">
     <div class="col-2 mx-5 categories">
-      <select class="form-select mt-3" [(ngModel)]="selectedCategory" (change)="filterMarkers()">
-        <option value="all">Categories</option>
-        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
-      </select>
+
+    <select class="form-select mt-3" [(ngModel)]="selectedCategory" (change)="filterMarkers()">
+      <option value="all">Todas ({{getCategoryCount('all')}})</option>
+      <option *ngFor="let category of categories" [value]="category">{{category}} ({{getCategoryCount(category)}})</option>
+    </select>
+
     </div>
 
     <div class="col-6 mt-4 text-end">
