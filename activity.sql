@@ -1,113 +1,158 @@
-CREATE DATABASE  IF NOT EXISTS `activity` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `activity`;
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: activity
--- ------------------------------------------------------
--- Server version	8.0.36
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-03-2024 a las 12:46:35
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `activity`
+-- Base de datos: `activity`
 --
 
-DROP TABLE IF EXISTS `activity`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `activity`
+--
+
 CREATE TABLE `activity` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `surname` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
-  `age` int DEFAULT NULL,
-  `distance` int DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL,
   `activityDate` date DEFAULT NULL,
-  `location` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `location` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `activity`
+-- Volcado de datos para la tabla `activity`
 --
 
-LOCK TABLES `activity` WRITE;
-/*!40000 ALTER TABLE `activity` DISABLE KEYS */;
-INSERT INTO `activity` VALUES (6,'rafa','fernandez','rafa@rafa.com',50,15,'2024-02-02','Canovelles'),(9,'alex','alex','alex@alex.com',18,25,'2024-03-04','Cardedeu'),(10,'laia','laia','laia@laia.com',22,10,'2024-02-19','Canovelles'),(11,'marta','marta','marta@marta.com',47,50,'2024-01-05','Montseny'),(13,'jack','jacks','jack@jack.com',11,6,'2024-03-06','Casa'),(15,'demo','demo','demo@demo.com',50,50,'2024-03-14','demo'),(17,'admin','admin','admin@admin.com',1,1,'2024-03-07','admin'),(18,'hola','hola','hola@hola.com',2,2,'2001-03-07','Mataró'),(21,'mila','mila','mila@mila.com',9,5,'2024-01-01','Canovelless');
-/*!40000 ALTER TABLE `activity` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `activity` (`id`, `name`, `surname`, `email`, `age`, `distance`, `activityDate`, `location`) VALUES
+(6, 'rafa', 'fernandez', 'rafa@rafa.com', 50, 15, '2024-02-02', 'Canovelles'),
+(9, 'alex', 'alex', 'alex@alex.com', 18, 25, '2024-03-04', 'Cardedeu'),
+(10, 'laia', 'laia', 'laia@laia.com', 22, 10, '2024-02-19', 'Canovelles'),
+(11, 'marta', 'marta', 'marta@marta.com', 47, 50, '2024-01-05', 'Montseny'),
+(13, 'jack', 'jacks', 'jack@jack.com', 11, 6, '2024-03-06', 'Casa'),
+(15, 'demo', 'demo', 'demo@demo.com', 50, 50, '2024-03-14', 'demo'),
+(17, 'admin', 'admin', 'admin@admin.com', 1, 1, '2024-03-07', 'admin'),
+(18, 'hola', 'hola', 'hola@hola.com', 2, 2, '2001-03-07', 'Mataró'),
+(21, 'mila', 'mila', 'mila@mila.com', 9, 5, '2024-01-01', 'Canovelles');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `events`
+-- Estructura de tabla para la tabla `events`
 --
 
-DROP TABLE IF EXISTS `events`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `events` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime DEFAULT NULL,
-  `allDay` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `allDay` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `events`
+-- Volcado de datos para la tabla `events`
 --
 
-LOCK TABLES `events` WRITE;
-/*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Excursió','2024-03-17 17:30:00','2024-03-17 18:30:00',NULL),(2,'Comida','2024-03-18 12:30:00','2024-03-18 16:30:00',NULL),(3,'Hola','2024-03-07 00:00:00','2024-03-08 00:00:00',1);
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `events` (`id`, `title`, `start`, `end`, `allDay`) VALUES
+(1, 'Excursió', '2024-03-19 17:30:00', '2024-03-19 18:30:00', 0),
+(2, 'Comida', '2024-03-19 12:30:00', '2024-03-19 16:30:00', 0),
+(3, 'Hola', '2024-03-19 00:00:00', '2024-03-20 00:00:00', 1),
+(4, 'Prueba', '2024-03-20 23:00:00', '2024-03-21 23:00:00', NULL),
+(5, 'ghdfhdfghd', '2024-03-12 00:00:00', '2024-03-13 00:00:00', 1),
+(6, 'Prueba', '2024-03-21 12:00:00', '2024-03-21 13:00:00', NULL);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `markers`
+-- Estructura de tabla para la tabla `markers`
 --
 
-DROP TABLE IF EXISTS `markers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `markers` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `longitude` decimal(9,6) DEFAULT NULL,
   `latitude` decimal(9,6) DEFAULT NULL,
-  `markerName` varchar(45) DEFAULT NULL,
-  `color` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name` varchar(45) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `markers`
+-- Volcado de datos para la tabla `markers`
 --
 
-LOCK TABLES `markers` WRITE;
-/*!40000 ALTER TABLE `markers` DISABLE KEYS */;
-INSERT INTO `markers` VALUES (1,41.403699,22.403629,'Marker1','#52BA3B'),(2,11.403629,21.403629,'Marker2','#000000'),(4,12.564700,7.569700,'marker3','#FFFF00'),(5,12.564700,7.000000,'marker4','#800000'),(6,12.000000,7.000000,'marker5','#FF0000'),(7,2.350000,41.620000,'marker6','#FF0000');
-/*!40000 ALTER TABLE `markers` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `markers` (`id`, `longitude`, `latitude`, `name`, `category`) VALUES
+(1, 41.403699, 22.403629, 'Marker1', 'Bancs'),
+(2, 11.403629, 21.403629, 'Marker2', 'Botigues'),
+(4, 12.564700, 7.569700, 'marker3', '#FFFF00'),
+(5, 12.564700, 7.000000, 'marker4', '#800000'),
+(6, 12.000000, 7.000000, 'marker5', 'Bencineres'),
+(7, 2.350000, 41.620000, 'Casa', 'Restaurants'),
+(8, 2.139079, 41.583702, 'fdasfas', 'Restaurants'),
+(9, 2.171981, 41.503445, 'sdafasdf', 'Botigues'),
+(10, 2.130827, 41.437613, 'asdfasdfwqer', 'Restaurants');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `markers`
+--
+ALTER TABLE `markers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `activity`
+--
+ALTER TABLE `activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `markers`
+--
+ALTER TABLE `markers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-03-18 21:36:41

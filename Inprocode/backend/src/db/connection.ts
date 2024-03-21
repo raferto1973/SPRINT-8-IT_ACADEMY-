@@ -1,12 +1,16 @@
 
 // connection.ts
 
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import keys from '../keys';
 
 const connection = mysql.createConnection({
-    ...keys,
-    timezone: 'Z', 
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'activity',
+    multipleStatements: true,
+    timezone: 'Z',
 });
 
 export default connection; 

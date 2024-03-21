@@ -17,7 +17,7 @@ export const getMarker = (req: Request, res: Response) => {
     
     const { id } = req.params;
 
-    connection.query('SELECT * FROM markers WHERE id = ?', id, (err, data) => {
+    connection.query('SELECT * FROM markers WHERE id = ?', id, (err, data: RowDataPacket[]) => {
         if(err) throw err;
         res.json(data[0])
     })
