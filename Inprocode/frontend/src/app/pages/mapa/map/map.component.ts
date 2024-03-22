@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.map = createMap('map', environment.mapbox_key);
+    this.map = createMap('map', 'pk.eyJ1IjoicmFmZXJ0byIsImEiOiJjbHRyazFhc2IwaXc3MmtudjM0Z3JiaTh0In0.vuKh97HY1_RFLJOQxLSRxg');
     this.map.on('click', this.addMarker.bind(this));
     this.map.on('load', () => {
       this.loadLocations();

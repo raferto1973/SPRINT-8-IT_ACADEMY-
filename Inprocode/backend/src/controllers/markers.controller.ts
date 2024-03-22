@@ -3,6 +3,7 @@
 
 import { Request, Response } from 'express';
 import connection from '../db/connection';
+import { RowDataPacket } from 'mysql2';
 
 export const getMarkers = (req: Request, res: Response) => {
     

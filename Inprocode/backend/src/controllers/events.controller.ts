@@ -5,6 +5,7 @@
 
 import { Request, Response } from 'express';
 import connection from '../db/connection';
+import { OkPacket, RowDataPacket } from 'mysql2';
 
 // Obtener todos los eventos
 export const getEvents = (req: Request, res: Response) => {
@@ -17,7 +18,7 @@ export const getEvents = (req: Request, res: Response) => {
 // Obtener un solo evento por su ID
 export const getEvent = (req: Request, res: Response) => {
     const { id } = req.params;
-    connection.query('SELECT * FROM events WHERE id = ?', [id], (err, results) => {
+    connection.query('SELECT * FROM events WHERE id = ?', [id], (err, results: RowDataPacket[]) => {
         if (err) throw err;
         res.json(results[0]);
     });
@@ -32,7 +33,7 @@ export const createEvent = (req: Request, res: Response) => {
         return res.status(400).json({ message: "Los campos 'title', 'start' y 'end' son obligatorios." });
     }
 
-    connection.query('INSERT INTO events SET ?', { title, start, end, color }, (err, results) => {
+    connection.query('INSERT INTO events SET ?', { title, start, end, color }, (err, results: OkPacket) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ message: "Error al crear el evento." });

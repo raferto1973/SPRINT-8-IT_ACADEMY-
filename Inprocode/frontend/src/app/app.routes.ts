@@ -10,7 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CrudComponent } from './pages/crud/crud.component';
 
 // Importació dels gràfics
-import { ChartComponent } from './pages/chart/chart.component';
+import { ChartsComponent } from './pages/chart/charts.component';
 
 // Importació del calendari
 import { CalendarComponent } from './pages/calendar/calendar.component';
@@ -40,7 +40,6 @@ export const routes: Routes = [
   },
 
 
-  // Ruta dels mapes
   {
     path: 'map',
     component: MapaComponent,
@@ -48,7 +47,7 @@ export const routes: Routes = [
 
   {
     path: 'grafics',
-    component: ChartComponent,
+    component: ChartsComponent,
   },
 
   {

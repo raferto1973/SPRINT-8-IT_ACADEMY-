@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "envs": "node ./scripts/set-envs.js",
-    "start": "npm run envs && ng serve -o",
+    "start": "ng serve -o",
     "build": "npm run envs && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -37,6 +37,7 @@
     "full": "^1.0.1",
     "leaflet": "^1.9.4",
     "mapbox-gl": "^3.2.0",
+    "ng-apexcharts": "^1.9.0",
     "primeicons": "^6.0.1",
     "primeng": "^17.11.0",
     "rxjs": "~7.8.0",
@@ -45,7 +46,7 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.2.2",
+    "@angular-devkit/build-angular": "^15.2.10",
     "@angular/cli": "^17.2.2",
     "@angular/compiler-cli": "^17.2.0",
     "@angular/localize": "^17.2.0",
