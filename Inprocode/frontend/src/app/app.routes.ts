@@ -4,8 +4,6 @@
 
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
-
 // Importació del CRUD
 import { CrudComponent } from './pages/crud/crud.component';
 
@@ -33,7 +31,6 @@ export const routes: Routes = [
     path: 'crud',
     component: CrudComponent,
   },
-
 
   {
     path: 'map',

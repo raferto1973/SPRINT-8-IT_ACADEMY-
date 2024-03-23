@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-03-2024 a las 18:23:10
+-- Tiempo de generación: 23-03-2024 a las 20:15:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,7 +43,6 @@ CREATE TABLE `activity` (
 --
 
 INSERT INTO `activity` (`id`, `name`, `surname`, `email`, `age`, `distance`, `activityDate`, `location`) VALUES
-(0, 'Rafa', 'fernandez', 'rafa@rafa.com', 50, 15, '2024-02-02', 'Canovelles'),
 (1, 'Alex', 'rodriguez', 'alex@alex.com', 18, 25, '2024-03-04', 'Cardedeu'),
 (2, 'Laia', 'Roig', 'laia@laia.com', 22, 10, '2024-02-19', 'Canovelles'),
 (3, 'Marta', 'Iniesta', 'marta@marta.com', 47, 50, '2024-01-05', 'Montseny'),
@@ -63,7 +62,7 @@ INSERT INTO `activity` (`id`, `name`, `surname`, `email`, `age`, `distance`, `ac
 (17, 'Toni', 'fernandez', 'Toni@Toni.com', 23, 115, '2024-01-14', 'Montseny'),
 (18, 'Lurdes', 'Isma', 'Lurdes@Lurdes.com', 55, 80, '2024-02-17', 'Canovelles'),
 (19, 'Maira', 'rodriguez', 'Maira@Maira.com', 51, 35, '2024-03-21', 'Barcelona'),
-(20, 'Albert', 'Torres', 'Albert@Albert.com', 15, 41, '2024-04-18', 'Cardedeu'),
+(20, 'Albert', 'Torres', 'Albert@Albert.com', 15, 41, '2024-03-13', 'Granollers'),
 (21, 'Oleguer', 'Smith', 'Oleguer@Oleguer.com', 31, 16, '2024-05-02', 'Barcelona'),
 (22, 'Pol', 'rodriguez', 'Pol@Pol.com', 27, 15, '2024-06-11', 'Canovelles'),
 (23, 'Pau', 'Roig', 'Pau@Pau.com', 75, 17, '2024-07-15', 'Mataró'),
@@ -73,7 +72,113 @@ INSERT INTO `activity` (`id`, `name`, `surname`, `email`, `age`, `distance`, `ac
 (27, 'Erica', 'Cuesta', 'Erica@Erica.com', 39, 5, '2024-03-23', 'Canovelles'),
 (28, 'Sara', 'rodriguez', 'Sara@Sara.com', 25, 1, '2024-07-22', 'Granollers'),
 (29, 'Montse', 'Roig', 'Montse@Montse.com', 33, 65, '2024-08-21', 'Barcelona'),
-(30, 'Gemma', 'Torres', 'Gemma@Gemma.com', 35, 45, '2024-09-01', 'Granollers');
+(30, 'Gemma', 'Torres', 'Gemma@Gemma.com', 35, 45, '2024-09-01', 'Granollers'),
+(31, 'alan', 'alan', 'alan@alan.com', 40, 10, '2024-03-23', 'Canovelles');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime DEFAULT NULL,
+  `color` varchar(10) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `start`, `end`, `color`) VALUES
+(1, 'Excursió', '2024-04-03 00:00:00', '2024-04-03 00:00:00', NULL),
+(2, 'Comida', '2024-04-05 00:00:00', '2024-04-05 00:00:00', NULL),
+(3, 'Hola', '2024-04-06 00:00:00', '2024-04-07 00:00:00', NULL),
+(4, 'Prueba', '2024-04-02 00:00:00', '2024-04-03 00:00:00', NULL),
+(5, 'ghdfhdfghd', '2024-04-05 00:00:00', '2024-04-06 00:00:00', NULL),
+(6, 'Prueba', '2024-04-03 00:00:00', '2024-04-03 00:00:00', NULL),
+(7, 'Isma', '2024-04-04 00:00:00', '2024-04-04 00:00:00', NULL),
+(13, 'Comprar', '2024-03-30 15:00:00', '2024-03-30 18:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `markers`
+--
+
+CREATE TABLE `markers` (
+  `id` int(11) NOT NULL,
+  `longitude` decimal(9,6) DEFAULT NULL,
+  `latitude` decimal(9,6) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `markers`
+--
+
+INSERT INTO `markers` (`id`, `longitude`, `latitude`, `name`, `category`) VALUES
+(1, 41.403699, 22.403629, 'Marker1', 'Bancs'),
+(2, 11.403629, 21.403629, 'Marker2', 'Botigues'),
+(4, 12.564700, 7.569700, 'marker3', '#FFFF00'),
+(5, 12.564700, 7.000000, 'marker4', '#800000'),
+(6, 12.000000, 7.000000, 'marker5', 'Bencineres'),
+(7, 2.350000, 41.620000, 'Casa', 'Restaurants'),
+(8, 2.139079, 41.583702, 'fdasfas', 'Restaurants'),
+(9, 2.171981, 41.503445, 'sdafasdf', 'Botigues'),
+(10, 2.130827, 41.437613, 'asdfasdfwqer', 'Restaurants'),
+(11, 2.284739, 41.610753, 'BBVA', 'Bancs'),
+(12, 1.981086, 41.648165, 'Pruba', 'Bencineres'),
+(13, 2.219331, 41.545177, 'Les Fonts', 'Restaurants'),
+(21, 2.287277, 41.587932, 'Alee', 'Botigues');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `activity`
+--
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `markers`
+--
+ALTER TABLE `markers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `activity`
+--
+ALTER TABLE `activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT de la tabla `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `markers`
+--
+ALTER TABLE `markers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
