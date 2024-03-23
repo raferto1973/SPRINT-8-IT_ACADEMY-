@@ -1,5 +1,5 @@
+![image](https://github.com/raferto1973/SPRINT-8-IT_ACADEMY-/assets/148342825/71f48391-99d8-40d1-9a08-5a2888b8d693)
 
-![image](https://github.com/raferto1973/SPRINT-8-IT_ACADEMY-/assets/148342825/44d0f3bf-3d3a-4d91-a0c6-b02fa050c17c)
 
 # 🌟 Project Overview
 
