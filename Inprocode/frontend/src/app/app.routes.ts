@@ -25,13 +25,8 @@ import { MapaComponent } from './pages/mapa/mapa.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/crud',
     pathMatch: 'full',
-  },
-
-  {
-    path: 'home',
-    component: HomeComponent,
   },
 
   {
@@ -57,7 +52,7 @@ export const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: '/home',
+    redirectTo: '/crud',
     pathMatch: 'full',
   },
 ];

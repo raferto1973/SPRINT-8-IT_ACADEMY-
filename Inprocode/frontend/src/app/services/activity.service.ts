@@ -10,6 +10,8 @@ import { Activity } from '../models/activity.model';
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class ActivityService {
   private myappUrl: string;
   private myApiUrl: string;
