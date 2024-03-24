@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, NgApexchartsModule } from 'ng-apexcharts';
 import { ActivityService } from '../../../services/activity.service';
 
+
+// Opcions del gràfic
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;

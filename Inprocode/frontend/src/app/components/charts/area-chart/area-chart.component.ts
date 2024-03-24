@@ -9,6 +9,7 @@ import { Activity } from '../../../models/activity.model';
 import { ActivityService } from '../../../services/activity.service';
 
 
+// Opcions del gràfic
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -30,18 +31,23 @@ export type ChartOptions = {
   templateUrl: './area-chart.component.html',
   styleUrl: './area-chart.component.scss'
 })
+
+
 export class AreaChartComponent implements OnInit{
 
   public chartOptions!: ChartOptions;
 
+  // Inicialitza les opcions del gràfic
   constructor(private activityService: ActivityService) { }
 
+  // Inicialitza les dades del gràfic
   ngOnInit(): void {
     this.activityService.getActivities().subscribe((activities) => {
       this.processData(activities);
     });
   }
 
+  // Processa les dades per a mostrar-les en el gràfic
   private processData(activities: Activity[]) {
     const ranges = ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61+'];
 
@@ -63,6 +69,7 @@ export class AreaChartComponent implements OnInit{
       y: distanceByAgeRange[range]
     }));
 
+    // Configura les opcions del gràfic
     this.chartOptions = {
       series: [{
         name: "Distància recorrida",
@@ -97,6 +104,7 @@ export class AreaChartComponent implements OnInit{
     };
   }
 
+  // Retorna la franja d'edat corresponent a una edat
   private getAgeRange(age: number): string {
     if (age <= 10) return '0-10';
     if (age <= 20) return '11-20';
@@ -104,6 +112,7 @@ export class AreaChartComponent implements OnInit{
     if (age <= 40) return '31-40';
     if (age <= 50) return '41-50';
     if (age <= 60) return '51-60';
+
     // Afegeix més franges si és necessari
     return '61+';
   }

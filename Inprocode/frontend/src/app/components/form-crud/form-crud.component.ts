@@ -1,48 +1,27 @@
+
+
 // form-crud.component.ts
 
-// Aquest component és el que es mostra en el diàleg de formulari per a afegir o editar un event.
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Inject } from '@angular/core';
 
-// Moduls de material que s'utilitzen en aquest component
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatFormField,
-  MatFormFieldModule,
-  MatLabel,
-} from '@angular/material/form-field';
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  DateAdapter,
-  MatNativeDateModule,
-  provideNativeDateAdapter,
-} from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Moduls de formularis que s'utilitzen en aquest component
-import {
-  Form,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // Serveis que s'utilitzen en aquest component
 import { ActivityService } from '../../services/activity.service';
 import { Activity } from '../../models/activity.model';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Dialog } from '@angular/cdk/dialog';
 import { format } from 'date-fns';
 
@@ -66,6 +45,8 @@ import { format } from 'date-fns';
   templateUrl: './form-crud.component.html',
   styleUrl: './form-crud.component.scss',
 })
+
+
 export class FormCrudComponent implements OnInit {
   form: FormGroup;
 

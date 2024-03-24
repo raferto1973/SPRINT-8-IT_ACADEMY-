@@ -1,3 +1,7 @@
+
+// landing.component.
+
+
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
@@ -13,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     styleUrl: './landing.component.scss',
     imports: [NavbarComponent,  RouterOutlet, RouterModule, FooterComponent, HttpClientModule]
 })
+
 export class LandingComponent {
 
 }

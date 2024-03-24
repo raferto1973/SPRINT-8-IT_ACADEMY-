@@ -14,7 +14,7 @@ import caLocale from '@fullcalendar/core/locales/ca'; // Locale Catalán
 
 
 
-// Asegúrate de que la ruta sea correcta
+// Asegúrat de que la ruta sigui correcta
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -22,6 +22,8 @@ import caLocale from '@fullcalendar/core/locales/ca'; // Locale Catalán
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
 })
+
+// Component del calendari
 export class CalendarComponent implements AfterViewInit {
   calendarOptions: any;
 
@@ -31,6 +33,8 @@ export class CalendarComponent implements AfterViewInit {
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef // Inyecta ChangeDetectorRef
   ) {
+
+    // Opcions del calendari
     this.calendarOptions = {
       themeSystem: 'bootstrap5',
       initialView: 'dayGridMonth',
@@ -52,6 +56,8 @@ export class CalendarComponent implements AfterViewInit {
       },
     };
   }
+
+  // Mètode per gestionar l'event de canvi de mida
   handleEventResize(resizeInfo: any) {
     throw new Error('Method not implemented.');
   }
@@ -72,7 +78,7 @@ export class CalendarComponent implements AfterViewInit {
 
 
 
-  // Mètode per obrir el formulario de diàleg per afegir un nou event
+  // Mètode per obrir el formulari de diàleg per afegir un nou event
   handleDateClick(arg: any): void {
     // Preparar un evento vacío con la fecha seleccionada
     const newEvent = {
@@ -96,9 +102,11 @@ export class CalendarComponent implements AfterViewInit {
         : clickInfo.event.startStr,
     };
 
+    // Obrir el diàleg amb la informació de l'event
     this.openDialog(eventToEdit, true);
   }
 
+  // Mètode per convertir la data de format ISO a format MySQL
   convertirFechaISOaMySQL(fechaISO: string): string {
     const fecha = new Date(fechaISO);
     const fechaFormateada = fecha.toISOString().split('T')[0];
@@ -107,22 +115,27 @@ export class CalendarComponent implements AfterViewInit {
   }
 
 
+  // Mètode per obrir el diàleg
   openDialog(eventData: any, isEdit: boolean = false): void {
     const dialogRef = this.dialog.open(EditEventDialogComponent, {
       width: '300px',
       data: { event: eventData },
     });
 
+    // Subscriure's al resultat del diàleg
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
       if (result) {
-        // Asegúrate de convertir las fechas antes de enviarlas al backend
+        // Assegurat de que la data estigui en format MySQL
       const eventoAEnviar = {
         ...result.event,
         start: this.convertirFechaISOaMySQL(result.event.start),
         end: this.convertirFechaISOaMySQL(result.event.end),
       };
+
         console.log(eventoAEnviar);
+
+        // Comprovar si s'ha d'eliminar, editar o afegir un event
         if (result.event.delete && isEdit) {
           // Eliminar evento
           this.calendarService.deleteEvent(result.event.id.toString()).subscribe(() => this.loadEvents());

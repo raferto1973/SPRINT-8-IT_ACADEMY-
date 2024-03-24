@@ -4,10 +4,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexGrid, ApexStroke, ApexTitleSubtitle, ApexXAxis, NgApexchartsModule } from 'ng-apexcharts';
+
 import { Activity } from '../../../models/activity.model';
+
 import { ActivityService } from '../../../services/activity.service';
 
 
+// Opcions del gràfic
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -26,19 +29,21 @@ export type ChartOptions = {
   styleUrl: './line-chart.component.scss'
 })
 
-
+// Component del gràfic de línia
 export class LineChartComponent implements OnInit {
 
   public chartOptions!: ChartOptions;
 
   constructor(private activityService: ActivityService) {} // Injecta ActivityService
 
+  // Inicialitza les dades del gràfic
   ngOnInit() {
     this.activityService.getActivities().subscribe((activities) => {
       this.processData(activities);
     });
   }
 
+  // Processa les dades per a mostrar-les en el gràfic
   private processData(activities: Activity[]) {
     // Inicialitza un objecte per comptar activitats per mes
     const countsPerMonth: {[month: string]: number} = {};
