@@ -3,7 +3,7 @@
 
 # Variables de entorno
 .env
-/src/environments/environment.ts
+# /src/environments/environment.ts
 
 
 # Compiled output
